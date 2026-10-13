@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090510">
+<meta name="description" content="دانلود اپلیکیشن سه گنگ">
+<title>دانلود سه گنگ | سه گنگ</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --purple: #a855f7;
+    --pink: #ec4899;
+    --bg: #090510;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: white;
+    font-family: Tahoma, Arial, sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 20%, #7025a52e, transparent 45%),
+        radial-gradient(ellipse at 80% 80%, #e32b8720, transparent 45%);
+    pointer-events: none;
+}
+
+.grid {
+    position: fixed;
+    inset: 0;
+    opacity: .12;
+    pointer-events: none;
+    background-image:
+        linear-gradient(#a855f733 1px, transparent 1px),
+        linear-gradient(90deg, #a855f733 1px, transparent 1px);
+    background-size: 38px 38px;
+    mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.orb {
+    position: fixed;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    filter: blur(75px);
+    opacity: .3;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite alternate;
+}
+
+.orb.one {
+    background: #a855f7;
+    top: 5%;
+    right: -70px;
+}
+
+.orb.two {
+    background: #ec4899;
+    bottom: 5%;
+    left: -70px;
+    animation-delay: -4s;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    padding: 38px 25px;
+    border: 1px solid #b46aff35;
+    border-radius: 28px;
+    background: linear-gradient(145deg, #191025d9, #0e0917e8);
+    box-shadow: 0 0 50px #8b35d51a;
+    animation: appear .8s ease both;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 30px;
+    color: #d8b4fe;
+    background: #a855f718;
+    border: 1px solid #a855f747;
+    font-size: 12px;
+    margin-bottom: 25px;
+    animation: glow 3s ease-in-out infinite;
+}
+
+.logo {
+    width: 105px;
+    height: 105px;
+    margin: 0 auto 22px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #9333ea, #ec4899);
+    box-shadow: 0 0 35px #a855f750;
+    animation: hover 4s ease-in-out infinite;
+    position: relative;
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border: 1px solid #c084fc70;
+    border-radius: 33px;
+    animation: rotate 12s linear infinite;
+}
+
+h1 {
+    font-size: clamp(29px, 8vw, 39px);
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #fff, #d8b4fe, #f9a8d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.description {
+    font-size: 15px;
+    line-height: 2.2;
+    color: #c4b5d5;
+    margin-bottom: 28px;
+}
+
+.description strong {
+    color: #e9d5ff;
+}
+
+.download {
+    display: flex;
+    width: 100%;
+    min-height: 58px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(110deg, #9333ea, #c026d3, #db2777);
+    background-size: 200% 100%;
+    box-shadow: 0 8px 28px #a855f740;
+    transition: transform .2s, box-shadow .2s;
+    animation: gradient 5s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.download::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #ffffff35, transparent);
+    transform: skewX(-20deg);
+    animation: shine 4s ease-in-out infinite;
+}
+
+.download:hover {
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 0 12px 35px #c026d370;
+}
+
+.download:active {
+    transform: scale(.97);
+}
+
+.download span {
+    position: relative;
+    z-index: 1;
+}
+
+.arrow {
+    font-size: 23px;
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+.note {
+    color: #8f829f;
+    font-size: 12px;
+    line-height: 2;
+    margin-top: 18px;
+}
+
+.divider {
+    height: 1px;
+    margin: 27px 0 20px;
+    background: linear-gradient(90deg, transparent, #a855f750, transparent);
+}
+
+.footer {
+    color: #887b99;
+    font-size: 11px;
+}
+
+.footer b {
+    color: #c084fc;
+}
+
+.particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #d8b4fe;
+    box-shadow: 0 0 10px #a855f7;
+    pointer-events: none;
+    animation: rise linear infinite;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(25px) scale(.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes float {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-30px, 40px); }
+}
+
+@keyframes hover {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-9px) rotate(3deg); }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 0 #a855f700; }
+    50% { box-shadow: 0 0 18px #a855f725; }
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes shine {
+    0%, 65% { left: -100%; }
+    85%, 100% { left: 150%; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+}
+
+@keyframes rise {
+    from { transform: translateY(20px); opacity: 0; }
+    20% { opacity: .8; }
+    to { transform: translateY(-100vh); opacity: 0; }
+}
+
+@media (max-width: 400px) {
+    .container { padding: 30px 19px; }
+    .description { font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+<main class="container">
+
+    <div class="badge">✦ نسخه رسمی اپلیکیشن سه گنگ ✦</div>
+
+    <div class="logo" aria-label="لوگوی سه گنگ">۳گ</div>
+
+    <h1>سه گنگ</h1>
+
+    <p class="description">
+        برای دانلود و استفاده اپلیکیشن
+        <strong>سه گنگ</strong>
+        همین الان دکمه‌ی دانلود را بزنید!
+        <br>
+        <span style="color:#a78bfa">
+            🚀 تجربه‌ای متفاوت، فقط با یک لمس!
+        </span>
+    </p>
+
+    <a class="download" href="./base.apk" download="base.apk">
+        <span class="arrow">↓</span>
+        <span>دانلود اپلیکیشن سه گنگ</span>
+    </a>
+
+    <p class="note">
+        📦 دریافت مستقیم فایل نصب برنامه
+        <br>
+        پس از دانلود، فایل APK را باز کنید تا نصب آغاز شود.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="footer">
+        ساخته‌شده با ❤️ برای کاربران سه گنگ
+        <br><br>
+        <b>THREE GANG</b> · تجربه‌ای فراتر از انتظار
+    </div>
+
+</main>
+
+<script>
+/* ذرات نوری سبک */
+const particleCount = 14;
+
+for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = (60 + Math.random() * 40) + "%";
+    particle.style.animationDuration = (7 + Math.random() * 10) + "s";
+    particle.style.animationDelay = (-Math.random() * 15) + "s";
+
+    document.body.appendChild(particle);
+}
+
+/* افکت کوچک هنگام لمس دکمه */
+document.querySelector(".download").addEventListener("click", function () {
+    this.style.opacity = ".85";
+    setTimeout(() => {
+        this.style.opacity = "1";
+    }, 250);
+});
+</script>
+
+</body>
+      </html>
